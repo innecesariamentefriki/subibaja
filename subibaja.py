@@ -27,24 +27,24 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv, "hp:")
     except getopt.GetoptError:
-        print 'monimonimoni.py -p <pair>'
-        print 'Example: monimonimoni.py -p USDT_DASH'
+        print 'subibaja.py -p <pair>'
+        print 'Example: subibaja.py -p USDT_DASH'
 
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
-            print 'monimonimoni.py -p <pair>'
+            print 'subibaja.py -p <pair>'
             sys.exit()
         elif opt in ("-p"):
             pair = arg
 
-    logging.basicConfig(filename='monimonimoni.log', level=logging.INFO)
+    logging.basicConfig(filename='subibaja.log', level=logging.INFO)
 
     # crea el broker que va a operar con el exchange
     currito = brk.broker('', '', pair)
 
     # Carga el almacenamiento offline de avisos y usuarios de la app
-    ddbb = dts.datos('monimonimoni.db')
+    ddbb = dts.datos('subibaja.db')
     #ddbb.firstRun()
     #exit()
 
@@ -103,7 +103,7 @@ def main(argv):
 
 
 def checkEvent(pair, action, ultima):
-    ddbb = dts.datos('monimonimoni.db')
+    ddbb = dts.datos('subibaja.db')
     date = ultima['x']
     value = ultima['y']
     logging.info(("valorando %s %s %s %.16f") % (pair, action, date, value))
@@ -113,7 +113,7 @@ def checkEvent(pair, action, ultima):
         return False
 
 def smsAviso(pair, action, date, value):
-    ddbb = dts.datos('monimonimoni.db')
+    ddbb = dts.datos('subibaja.db')
     for incauto in ddbb.showUsers():
         payload = {
             'chat_id': incauto[1],
