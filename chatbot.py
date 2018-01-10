@@ -38,7 +38,7 @@ Sólo tienes que esperar a que te dé mis consejos. En caso de que tengas alguna
     newuser = update['message']['chat']['first_name']
     newid = update['message']['chat']['id']
 
-    ddbb = dts.datos('monimonimoni.db')
+    ddbb = dts.datos('subibaja.db')
     if not ddbb.findUser(newuser):
         ddbb.addUser(newuser, newid)
         logger.info("Añadiendo user %s" % str(newuser))
